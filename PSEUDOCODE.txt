@@ -1,6 +1,23 @@
 
 ADD psuedocode here guys :)
 
+
+Q1
+
+INT FISH
+FOR (i=0;i<10;i++){
+do something;
+}
+
+Q2
+
+INT FISH
+INT SHARK
+IF (sharks >= 5){
+fish dies;
+}
+
+
 // int *current represents a cell
 // current = -10;
 // each cell has an int
