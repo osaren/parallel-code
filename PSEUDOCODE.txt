@@ -1,4 +1,66 @@
 
 ADD psuedocode here guys :)
 
--
+// int *current represents a cell
+// current = -10;
+// each cell has an int
+// the value represents the state of each cell 
+// Negative numbers represent a shark in a cell
+
+// *neighbours represent the neighbours of thr current cell
+// neighbors = [-2, -7, -19, 0, -5, -10, 0, -2];
+// neighbors[0] -> -2(shark)
+// neighbors[1] -> -7(shark)
+// neighbors[2] -> -19(shark)
+// neighbors[3] -> 0(empty)
+// neighbors[4] -> -5(shark)
+// neighbors[5] -> -10(shark)
+// neighbors[6] -> 0(empty)
+// neighbors[7] -> -2(shark)
+
+int generations = 0; 
+int targetGenerations = 20000;
+
+// The for loop processes each generation
+for (int i = 0; i < targetGenerations; i++){
+
+   if(*current <= -1) // This is a shark
+   
+   // Declare variables
+   // These variables will count how many neighbors are fish/sharks
+   
+   int sharkNeighbors = 0;
+   int fishNeighbors = 0;
+   
+   // Loop over the neighbors array 
+   // so we can count how many neighbors are sharks/fish
+   
+   for(int j = 0; j < 8; j++){
+   
+   // if neighbour is shark
+   
+   if neighbors[j] <= -1) { // neighbour is shark
+     sharkNeighbours++;
+   }
+   else if (neighbours [j] >= 1 { // neighbour is fish
+     fishNeighbours ++;
+     
+    }
+   }
+   // sharkNeighbours = 6
+   // fishNeighbours = 0
+   
+   if(*current <= -20) { // if shark is older than -20
+   *current = 0 // kills the shark, due to age
+   }
+   else if (sharkNeighbours >= 6 && fishNeighbours == 0){
+   *current = 0;// kills the shark, due to starvation
+   }
+   
+   
+  }else if(*current >= 1){// this is a fish
+  // process fish rules
+  } else if(*current == 0) {// this is empty
+  // process breeding rules
+  }
+ }
