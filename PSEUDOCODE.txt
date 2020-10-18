@@ -81,3 +81,24 @@ for (int i = 0; i < targetGenerations; i++){
   // process breeding rules
   }
  }
+ 
+ Dylan 
+ 
+ //Shark has a 1/32(0.031) chance of dying randomly. Use a random number to see if the shark survives.
+
+int randNumber
+
+if(randNumber >0.031)
+{
+	shark dies;
+} 
+
+//if statement checks to see if the shark is alive, then adds to its age
+
+int sharkAge
+bool isAlive
+
+if(shark isAlive) 
+{
+	sharkAge++;
+}
