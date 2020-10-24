@@ -102,3 +102,18 @@ if(shark isAlive)
 {
 	sharkAge++;
 }
+
+// Mark's Pseudo Parallel
+
+- If(at most 5 neighbours are sharks){ 
+	the fish dies; 
+	becoming food for shark( fish = dead; dead = food; sharkEat = eat(food); )
+}
+
+- If (all 8 Neighbors = fish){ 
+	fish must die because of overpopulation;
+}
+
+- If (fish != dead){ 
+	increment its age (age++)
+}
