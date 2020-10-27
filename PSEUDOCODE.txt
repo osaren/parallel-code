@@ -102,6 +102,30 @@ for (int i = 0; i < targetGenerations; i++){
  }
 
 
+
+
+//////////////////////////////////////
+
+void generateInitialData(int *pointerToOcean, int oceanRowSize, int oceanColumnSize) {
+
+  for (int row = 0; row < oceanRowSize; row++) {
+
+    for (int col = 0; col < oceanColumnSize; col++) {
+
+      // generate a random number between -20 and 20
+      int scale = rand() / RAND_MAX;
+      int randomNumber = 0 + scale * (20 - 0);
+
+      // TODO
+      // some logic to make half of these random numbers negative
+
+      pointerToOcean[row][col] = randomNumber;
+    }
+  }
+}
+
+///////////////////////////////////////////
+
  
  Dylan 
  
