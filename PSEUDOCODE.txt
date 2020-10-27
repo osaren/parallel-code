@@ -21,7 +21,7 @@ fish dies;
 // int *current represents a cell
 // current = -10;
 // each cell has an int
-// the value represents the state of each cell 
+// the value represents the state of each cell
 // Negative numbers represent a shark in a cell
 
 // *neighbours represent the neighbours of thr current cell
@@ -35,52 +35,73 @@ fish dies;
 // neighbors[6] -> 0(empty)
 // neighbors[7] -> -2(shark)
 
-int generations = 0; 
+// Declaring variables at the top of main()
+int currentGeneration = 0;
 int targetGenerations = 20000;
+int oceanRowSize = 10000;
+int oceanColumnSize = 10000;
+int ocean[oceanRowSize][oceanColumnSize];
 
-// The for loop processes each generation
+generateInitialData(ocean, oceanRowSize, oceanColumnSize);
+
+// Outter-most for loop processes each generation
 for (int i = 0; i < targetGenerations; i++){
 
-   if(*current <= -1) // This is a shark
-   
-   // Declare variables
-   // These variables will count how many neighbors are fish/sharks
-   
-   int sharkNeighbors = 0;
-   int fishNeighbors = 0;
-   
-   // Loop over the neighbors array 
-   // so we can count how many neighbors are sharks/fish
-   
-   for(int j = 0; j < 8; j++){
-   
-   // if neighbour is shark
-   
-   if neighbors[j] <= -1) { // neighbour is shark
-     sharkNeighbours++;
-   }
-   else if (neighbours [j] >= 1 { // neighbour is fish
-     fishNeighbours ++;
-     
+    // These 2 for loops walk over the cells in grid (ocean)
+    for (int row = 0; row < oceanRowSize; row++) {
+      for (int column = 0; column < oceanColumnSize; column++) {
+
+        int current = ocean[row][column];
+
+        // TODO
+        // Get neighboring cells and their values
+        // and put into a neighbor array
+        // new function, to get all the neighbours, relative to current
+        // Example,
+        // int[] neighbours = getNeighbours();
+
+        // process rules on current cell
+        if (current <= -1) {
+          // process shark rules
+
+          // Declare variables
+          // These variables will count how many neighbors are fish/sharks
+
+          int sharkNeighbors = 0;
+          int fishNeighbors = 0;
+
+	  // Loop over the neighbors array 
+          // so we can count how many neighbors are sharks/fish
+
+          for(int j = 0; j < 8; j++){
+
+            // if neighbour is shark
+            if neighbors[j] <= -1) { // neighbour is shark
+              sharkNeighbours++;
+            } else if (neighbours [j] >= 1 { // neighbour is fish
+              fishNeighbours ++;
+            }
+          }
+          // sharkNeighbours = 6
+          // fishNeighbours = 0
+
+          if(current <= -20) { // if shark is older than -20
+            current = 0 // kills the shark, due to age
+          } else if (sharkNeighbours >= 6 && fishNeighbours == 0){
+            current = 0;// kills the shark, due to starvation
+          }
+
+
+        } else if(current >= 1){// this is a fish
+          // process fish rules
+        } else if(current == 0) {// this is empty
+          // process breeding rules
+        }
+      }
     }
-   }
-   // sharkNeighbours = 6
-   // fishNeighbours = 0
-   
-   if(*current <= -20) { // if shark is older than -20
-   *current = 0 // kills the shark, due to age
-   }
-   else if (sharkNeighbours >= 6 && fishNeighbours == 0){
-   *current = 0;// kills the shark, due to starvation
-   }
-   
-   
-  }else if(*current >= 1){// this is a fish
-  // process fish rules
-  } else if(*current == 0) {// this is empty
-  // process breeding rules
-  }
  }
+
+
  
  Dylan 
  
