@@ -142,6 +142,42 @@ void generateInitialData(int *pointerToOcean, int oceanRowSize, int oceanColumnS
 
       // TODO
       // some logic to make half of these random numbers negative
+      
+      void fillOcean() {
+
+		int row = 1000;
+		int col = 2000;
+		int ocean [row][col];
+
+		int shark = -1;
+		int fish = 1;
+		int empty =0;
+
+		int i;
+		int j;
+		for(i=0; i <row; i++)
+		{
+   		 	 for(int j=0; j<col; j+=2)
+    				{
+        			ocean[i][j] = fish;
+    				}
+		}
+
+		for(i=0; i < row; i++)
+		{
+  		  for(j=1; j<col; j+=4)
+   			 {
+        		ocean[i][j] = empty;
+    			}
+		}
+
+		for(i=0; i< row; i++)
+		{
+   		 for(j=3; j<col; j+=4)
+    		{
+        		ocean[i][j] = shark;
+    		}
+}
 
       pointerToOcean[row][col] = randomNumber;
     }
