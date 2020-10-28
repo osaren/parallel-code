@@ -6,7 +6,7 @@ Q1
 
 INT FISH
 FOR (i=0;i<10;i++){
-do something;
+carry out chosen commands;
 }
 
 Q2
