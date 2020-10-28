@@ -148,7 +148,9 @@ if(shark isAlive)
 	sharkAge++;
 }
 
-// Mark's Pseudo Parallel
+
+
+-------------- mark --------------
 
 - If(at most 5 neighbours are sharks){ 
 	the fish dies; 
@@ -161,4 +163,59 @@ if(shark isAlive)
 
 - If (fish != dead){ 
 	increment its age (age++)
+}
+
+-------------- mark --------------
+
+
+---- breeding rule
+
+//current cell is empty
+
+int current = 0;
+
+// fish age is 1 at birth
+// sharks age is -1 at birth
+
+int fishBreedingAge = 2;
+int sharkBreedingAge = 3;
+
+int fishNeighbours;
+int sharkNeighbours;
+
+int fish;
+int shark;
+
+
+if(current == 0){
+
+	if((sharkNeighbours >= 4 && breedingAge >= 3) && (sharkNeighbours < fishNeighbours)){
+	
+		shark = -1;
+	}
+	
+	if((fishNeighbours >= 4 && breedingAge >= 2) && (sharkNeighbours < fishNeighbours)){
+	
+		fish = 1;
+	}
+}
+
+---- fish rules
+
+if(sharkNeighbours <= 5){
+	// fish becomes current cell
+	// shark eats the fish in that current cell?
+
+	fish = current;
+	shark = fish;
+}
+
+if(fishNeighbours = 8){
+	// overpopulation
+	
+	current = 0; 
+}
+
+if(fish != 0){
+	fish += 1;
 }
