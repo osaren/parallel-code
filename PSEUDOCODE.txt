@@ -1,7 +1,9 @@
 
 ADD psuedocode here guys :)
 
+##############################################################################
 
+//Josh's Code
 Q1
 
 INT FISH
@@ -17,6 +19,28 @@ IF (sharks >= 5){
 fish dies;
 }
 
+
+### put into code ###
+
+if(current <= -10) {	// if shark is older than 10
+	current = 0	// kills the fish, due to age
+} 
+
+else if (sharkNeighbours >=5){	//if there are more than 5 sharks as neighbours
+	current = 0;	// kill the fish, due to being eaten
+}
+
+else if (fishNeighbours = 8){	//if there are 8 fish as neighbours
+	current = 0;	// kill the fish due to overpopulation
+}
+
+else{
+	age++; //if a fish does not die, age is incremented
+}
+          
+
+
+##############################################################
 
 // int *current represents a cell
 // current = -10;
