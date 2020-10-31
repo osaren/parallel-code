@@ -1,0 +1,83 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+  printf("Welcome to fishes and sharks.\n");
+
+  // Declaring variables at the top of main()
+  int targetGenerations = 20000;
+  int oceanRowSize = 1000;
+  int oceanColumnSize = 2000;
+  int ocean[oceanRowSize][oceanColumnSize];
+
+
+  /*
+   * Populate array with initial data (empty cells, fishes and sharks).
+   *
+   * 50% Fish
+   * 25% Shark
+   * 25% Empty
+   * 1st step -> [0, 0, 0, 0, 0, 0, 0, 0] (Set all cells to be empty)
+   * 2nd step -> [0, 1, 0, 1, 0, 1, 0, 1] (Every 2nd cell, set to be a fish)
+   * 3rd step -> [-1, 1, 0, 1, -1, 1, 0, 1] (Every 4th cell, set to be a shark)
+   */
+  printf("numberOfRows: %d.\n", oceanRowSize);
+  printf("numberOfColumns: %d.\n", oceanColumnSize);
+
+  int shark = -1;
+	int fish = 1;
+	int empty = 0;
+
+	int i;
+	int j;
+
+  // Outter for loop, responible for walking down the rows in the 2D array
+  // from top to bottom
+  // 50% empty
+  for (i = 0; i < oceanRowSize; i++) {
+    // Inner for loop, responible for walking across columns in the 2D array
+    // from left to right
+    for (j = 0; j < oceanColumnSize; j++) {
+      ocean[i][j] = empty;
+    }
+  }
+
+  // 25% fish
+  for(i = 0; i < oceanRowSize; i++) {
+    for(j = 1; j < oceanColumnSize; j += 2) {
+      ocean[i][j] = fish;
+    }
+  }
+
+  // 25% sharks
+  for(i = 0; i < oceanRowSize; i++) {
+    for(j = 0; j < oceanColumnSize; j += 4) {
+      ocean[i][j] = shark;
+    }
+  }
+
+  // ocean has been populated with empty cells, fishes and sharks.
+
+  // Loop through each generation
+  for (int currentGeneration = 0; currentGeneration < targetGenerations; currentGeneration++) {
+
+    // Loop through each cell, in order to process rules
+    for (int currentRow = 0; currentRow < oceanRowSize; currentRow++) {
+      for (int currentColumn = 0; currentColumn < oceanColumnSize; currentColumn++) {
+
+        // get current
+        // get all the current cells neighbours
+
+        // process rules
+
+        // obtain a new value for current
+        // put new value into futureOcean, at the same position
+      }
+    }
+
+    // all cells have been processed for current generation
+
+    // overwrite ocean with futureOcean
+  }
+
+  return 0;
+}
