@@ -225,6 +225,18 @@ if(shark isAlive)
 	increment its age (age++)
 }
 
+
+- If(all cells are empty){
+
+	if((there is at least 4 neighbors of sharks && and at least 3 sharks are of breeding age) && (if there is less than 4 fish)){
+		a new shark is created at value -1
+	}
+	
+	if((there is at least 4 neighbors of fishes && and at least 3 fishes are of breeding age) && (if there is less than 4 shark)){
+		a new fish is created at value 1
+	}
+}
+
 -------------- mark --------------
 
 
