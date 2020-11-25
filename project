@@ -1,14 +1,22 @@
 #include <stdio.h>
 
+// Define constants for program
+#define OCEAN_ROW_SIZE 1000
+#define OCEAN_COLUMN_SIZE 1000
+#define TARGET_GENERATIONS 20000
+// Description of #define
+// https://www.techonthenet.com/c_language/constants/create_define.php
+
+// Global variables
+int ocean[OCEAN_ROW_SIZE][OCEAN_COLUMN_SIZE]; // Declares an array, without any values
+int futureOcean[OCEAN_ROW_SIZE][OCEAN_COLUMN_SIZE]; // Declares an array, without any values
+// int ocean[2][2] = { // Example, of declaring a 2D array, and setting values
+  // {1, 2}
+  // {3, 4}
+//   };
+
 int main(int argc, char *argv[]) {
   printf("Welcome to fishes and sharks.\n");
-
-  // Declaring variables at the top of main()
-  int targetGenerations = 20000;
-  int oceanRowSize = 1000;
-  int oceanColumnSize = 2000;
-  int ocean[oceanRowSize][oceanColumnSize];
-
 
   /*
    * Populate array with initial data (empty cells, fishes and sharks).
@@ -20,8 +28,8 @@ int main(int argc, char *argv[]) {
    * 2nd step -> [0, 1, 0, 1, 0, 1, 0, 1] (Every 2nd cell, set to be a fish)
    * 3rd step -> [-1, 1, 0, 1, -1, 1, 0, 1] (Every 4th cell, set to be a shark)
    */
-  printf("numberOfRows: %d.\n", oceanRowSize);
-  printf("numberOfColumns: %d.\n", oceanColumnSize);
+  printf("numberOfRows: %d.\n", OCEAN_ROW_SIZE);
+  printf("numberOfColumns: %d.\n", OCEAN_COLUMN_SIZE);
 
   int shark = -1;
 	int fish = 1;
@@ -33,50 +41,111 @@ int main(int argc, char *argv[]) {
   // Outter for loop, responible for walking down the rows in the 2D array
   // from top to bottom
   // 50% empty
-  for (i = 0; i < oceanRowSize; i++) {
+  printf("Populating ocean with empty cells.\n");
+  for (i = 0; i < OCEAN_ROW_SIZE; i++) {
     // Inner for loop, responible for walking across columns in the 2D array
     // from left to right
-    for (j = 0; j < oceanColumnSize; j++) {
+    for (j = 0; j < OCEAN_COLUMN_SIZE; j++) {
       ocean[i][j] = empty;
     }
   }
 
   // 25% fish
-  for(i = 0; i < oceanRowSize; i++) {
-    for(j = 1; j < oceanColumnSize; j += 2) {
+  printf("Populating ocean with fishes.\n");
+  for(i = 0; i < OCEAN_ROW_SIZE; i++) {
+    for(j = 1; j < OCEAN_COLUMN_SIZE; j += 2) {
       ocean[i][j] = fish;
     }
   }
 
   // 25% sharks
-  for(i = 0; i < oceanRowSize; i++) {
-    for(j = 0; j < oceanColumnSize; j += 4) {
+  printf("Populating ocean with sharks.\n");
+  for(i = 0; i < OCEAN_ROW_SIZE; i++) {
+    for(j = 0; j < OCEAN_COLUMN_SIZE; j += 4) {
       ocean[i][j] = shark;
     }
   }
-
+  printf("Finished populating initial state of ocean.\n");
   // ocean has been populated with empty cells, fishes and sharks.
 
   // Loop through each generation
-  for (int currentGeneration = 0; currentGeneration < targetGenerations; currentGeneration++) {
+  for (int currentGeneration = 0; currentGeneration < TARGET_GENERATIONS; currentGeneration++) {
+    printf("Processing generation: %d.\n", currentGeneration);
 
     // Loop through each cell, in order to process rules
-    for (int currentRow = 0; currentRow < oceanRowSize; currentRow++) {
-      for (int currentColumn = 0; currentColumn < oceanColumnSize; currentColumn++) {
+    for (int currentRow = 1; currentRow < OCEAN_ROW_SIZE - 1; currentRow++) {
+      for (int currentColumn = 1; currentColumn < OCEAN_COLUMN_SIZE - 1; currentColumn++) {
 
         // get current
+        int current = ocean[currentRow][currentColumn];
+
         // get all the current cells neighbours
+        int neighbours[8];
+        neighbours[0] = ocean[currentRow - 1][currentColumn - 1];
+        neighbours[1] = ocean[currentRow - 1][currentColumn];
+        neighbours[2] = ocean[currentRow - 1][currentColumn + 1];
+        neighbours[3] = ocean[currentRow][currentColumn - 1];
+        neighbours[4] = ocean[currentRow][currentColumn + 1];
+        neighbours[5] = ocean[currentRow + 1][currentColumn - 1];
+        neighbours[6] = ocean[currentRow + 1][currentColumn];
+        neighbours[7] = ocean[currentRow + 1][currentColumn + 1];
+        // neighbours = {1, 5, 0, 6, -8, 2, -5, 1}
 
         // process rules
+        if (current <= -1) {
+          // process shark rules
 
-        // obtain a new value for current
+          // Declare variables
+          // These variables will count how many neighbors are fish/sharks
+          int sharkNeighbours = 0;
+          int fishNeighbours = 0;
+
+	        // Loop over the neighbors array
+          // so we can count how many neighbors are sharks/fish
+
+          for(int j = 0; j < 8; j++){
+            // if neighbour is shark
+            if (neighbours[j] <= -1) { // neighbour is shark
+              sharkNeighbours++;
+            } else if (neighbours [j] >= 1) { // neighbour is fish
+              fishNeighbours++;
+            }
+          }
+          // sharkNeighbours = 6
+          // fishNeighbours = 0
+
+          if (current <= -20) { // if shark is older than -20
+            printf("Shark is too old");
+            current = 0; // kills the shark, due to age
+          } else if (sharkNeighbours >= 6 && fishNeighbours == 0){
+            printf("Shark is overcrowded");
+            current = 0; // kills the shark, due to starvation
+          }
+
+          // we've processed the shark rules for current
+          // and we know what value current will become in the next generation
+
+
+        } else if(current >= 1){// this is a fish
+          // process fish rules
+
+        } else if(current == 0) {// this is empty
+          // process breeding rules
+        }
+
         // put new value into futureOcean, at the same position
+        futureOcean[currentRow][currentColumn] = current;
       }
     }
 
     // all cells have been processed for current generation
 
-    // overwrite ocean with futureOcean
+    // overwrite ocean values with futureOcean values
+    for (int k = 1; k < OCEAN_ROW_SIZE - 1; k++) {
+      for (int l = 1; l < OCEAN_COLUMN_SIZE - 1; l++) {
+        ocean[k][l] = futureOcean[k][l];
+      }
+    }
   }
 
   return 0;
