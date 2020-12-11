@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "functions.h"
 
-void* getNeighbors(long my_row, currentColumn)
+void* getNeighbors(long my_row, long currentColumn)
 {   
      int *neighbours;
      int amountOfNeighbours;
