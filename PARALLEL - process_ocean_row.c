@@ -21,7 +21,7 @@ void* getNeighbors(long my_row, long currentColumn)
         }
         else if(currentColumn == 20000) // gets the neighbors for the top right cell
         {
-          *neighbours = {extern ocean[my_row][currentColumn-1], extern ocean[my_row-1][currentColumn], extern ocean[my_row-1][currentColumn-1]};
+          *neighbours = {extern ocean[my_row][currentColumn-1], extern ocean[my_row+1][currentColumn], extern ocean[my_row+1][currentColumn-1]};
         }
        }
       else 
@@ -39,35 +39,44 @@ void* getNeighbors(long my_row, long currentColumn)
       {
         amountOfNeighbours = 3;
         *neighbours = malloc(sizeof(int[amountOfNeighbours]));
+        if(currentColumn == 1) // gets the neighbours for the bottom left corner cell
+        {
+             *neighbours = {extern ocean[my_row-1][currentColumn], extern ocean[my_row-1][currentColumn+1], extern ocean[my_row][currentColumn+1]};
+        }
+        else if(currentColumn == 20000) // gets the neighbours for the bottom right corner cell
+        {
+             *neighbours = {extern ocean[my_row][currentColumn-1], extern ocean[my_row-1][currentColumn], extern ocean[my_row-1][currentColumn-1]};
+        }
       }
       else 
       {
         amountOfNeighbours = 5; // rest of the cells on row 20000 have 5 neighbours
         *neighbours = malloc(sizeof(int[amountOfNeighbours]));
+        *neighbours = {extern ocean[my_row][currentColumn-1], extern ocean[my_row][currentColumn+1], extern ocean[my_row+1][currentColumn-1], extern ocean[my_row+1][currentColumn]
+             ,extern ocean[my_row+1][currentColumn+1]};
       }
     }
-    else if(currentColumn == 1) // its  a boundary cell - Left most column
+    else if(currentColumn == 1 && my_row != 1 && my_row != 20000) // its  a boundary cell - Left most column AND not the top left or right corner cell
     {
      *amountOfNeighbours = 5; 
       *neighbours = malloc(sizeof(int[amountOfNeighbours]));
+      *neighbours = {extern ocean[my_row-1][currentColumn], extern ocean[my_row-1][currentColumn+1], extern ocean[my_row][currentColumn+1], extern ocean[my_row+1][currentColumn]
+             ,extern ocean[my_row+1][currentColumn+1]};
     }
-    else if(currentColumn == 20000) // its a boundary cell - Right most column
+    else if(currentColumn == 20000 && my_row != 1 && my_row != 20000) // its a boundary cell - Right most column AND not the bottom left or right corner cell 
     {
       amountOfNeighbours =5;
       *neighbours = malloc(sizeof(int[amountOfNeighbours]));
+       *neighbours = {extern ocean[my_row-1][currentColumn-1], extern ocean[my_row-1][currentColumn], extern ocean[my_row][currentColumn-1], extern ocean[my_row+1][currentColumn-1]
+             ,extern ocean[my_row+1][currentColumn]};
     }
     else // its not a boundary cell
     {
       amountOfNeighbours = 8;
       *neighbours = malloc(sizeof(int[amountOfNeighbours]));
+       *neighbours = {extern ocean[my_row-1][currentColumn-1], extern ocean[my_row-1][currentColumn], extern ocean[my_row-1][currentColumn+1], extern ocean[my_row][currentColumn-1]
+             ,extern ocean[my_row][currentColumn+1], extern ocean[my_row+1][currentColumn-1], extern ocean[my_row+1][currentColumn], extern ocean[my_row+1][currentColumn+1]};
     }
-    // e.g has 3 neighbours, malloc on the pointer
-    // so that neighbours becomes an array which can store 3 ints
-    // and then get those neighbours and put into the array
-  // TODO remove neighbours array that is hardcoded to 8 elements,
-    // in favour of pointer
-    // int *neighbours;
-    // int *amountOfNeighbours;
 
   
 }
