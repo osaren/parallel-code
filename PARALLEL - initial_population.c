@@ -44,3 +44,4 @@ void initialPopulation() {
   printf("Finished populating initial state of ocean.\n");
   // ocean has been populated with empty cells, fishes and sharks.
 }
+
