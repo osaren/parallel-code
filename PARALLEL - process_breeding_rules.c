@@ -1,4 +1,4 @@
-void processBreedingRules(int *current, int *neighbours) {
+void processBreedingRules(int *current, int *neighbours, int amountOfNeighbours) {
   // process breeding rules
 
   // Declare variables
@@ -10,7 +10,7 @@ void processBreedingRules(int *current, int *neighbours) {
 
   // Loop over the neighbors array
   // so we can count how many neighbors are sharks/fish
-  for (int j = 0; j < 8; j++){
+  for (int j = 0; j < amountOfNeighbours; j++){
     // if neighbour is shark
     if (neighbours[j] <= -1) { // neighbour is shark
       sharkNeighbours++;
