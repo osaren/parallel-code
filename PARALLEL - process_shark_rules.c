@@ -1,8 +1,6 @@
 #include <stdlib.h>
 
-void processSharkRules(int *current, int *neighbours) {
-// TODO
-// void processSharkRules(int *current, int *neighbours, int *amountOfNeighbours) {
+void processSharkRules(int *current, int *neighbours, int amountOfNeighbours) {
 
   // process shark rules
 
@@ -13,8 +11,7 @@ void processSharkRules(int *current, int *neighbours) {
 
   // Loop over the neighbors array
   // so we can count how many neighbors are sharks/fish
-  for (int j = 0; j < 8; j++) {
-  // for (int j = 0; j < *amountOfNeighbours; j++) {
+  for (int j = 0; j < amountOfNeighbours; j++) {
     // if neighbour is shark
     if (neighbours[j] <= -1) { // neighbour is shark
       sharkNeighbours++;
