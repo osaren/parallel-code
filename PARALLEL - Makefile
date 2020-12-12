@@ -1,5 +1,5 @@
-fishes_and_sharks: fishes_and_sharks.c initial_population.o process_shark_rules.o process_fish_rules.o process_breeding_rules.o print_matrix.o process_ocean_row.o functions.h
-	gcc fishes_and_sharks.c initial_population.o process_shark_rules.o process_fish_rules.o process_breeding_rules.o print_matrix.o process_ocean_row.o -o fishes_and_sharks
+fishes_and_sharks: fishes_and_sharks.c initial_population.o process_shark_rules.o process_fish_rules.o process_breeding_rules.o print_matrix.o process_ocean_row.o getNeighbours.o functions.h
+	gcc fishes_and_sharks.c initial_population.o process_shark_rules.o process_fish_rules.o process_breeding_rules.o print_matrix.o process_ocean_row.o getNeighbours.o -o fishes_and_sharks -lpthread
 
 initial_population.o: initial_population.c functions.h
 	gcc -c initial_population.c
@@ -18,3 +18,10 @@ print_matrix.o: print_matrix.c functions.h
 
 process_ocean_row.o: process_ocean_row.c functions.h
 	gcc -c process_ocean_row.c
+
+getNeighbours.o: getNeighbours.c functions.h
+	gcc -c getNeighbours.c
+
+clean:
+	rm fishes_and_sharks
+	rm *.o
