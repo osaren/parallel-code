@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-void processFishRules(int *current, int *neighbours) {
-  //printf("Current that was passed is: %d\n", *current);
+void processFishRules(int *current, int *neighbours, int amountOfNeighbours) {
   // process fish rules
 
   // Declare variables
@@ -11,7 +10,7 @@ void processFishRules(int *current, int *neighbours) {
 
   // Loop over the neighbors array
   // so we can count how many neighbors are sharks/fish
-  for (int j = 0; j < 8; j++){
+  for (int j = 0; j < amountOfNeighbours; j++){
     // if neighbour is shark
     if (neighbours[j] <= -1) { // neighbour is shark
       sharkNeighbours++;
