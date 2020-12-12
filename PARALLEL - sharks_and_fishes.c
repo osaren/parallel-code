@@ -9,6 +9,9 @@
 
 #include "functions.h"
 
+int ocean[OCEAN_ROW_SIZE][OCEAN_COLUMN_SIZE];
+int futureOcean[OCEAN_ROW_SIZE][OCEAN_COLUMN_SIZE];
+
 int main(int argc, char *argv[]) {
   printf("Welcome to fishes and sharks.\n");
 
@@ -44,12 +47,8 @@ int main(int argc, char *argv[]) {
     printf("Processing generation: %d.\n", currentGeneration);
 
     // Loop through each cell, in order to process rules
-    // Dont process boundary cells (for now)
     // Start a block of threads (10)
-    for (int currentRow = 1; currentRow < OCEAN_ROW_SIZE - 1; currentRow = currentRow + THREAD_COUNT) {
-
-    // TODO, uncomment when boundary rows are being processed
-    // for (int currentRow = 0; currentRow < OCEAN_ROW_SIZE; currentRow = currentRow + THREAD_COUNT) {
+    for (int currentRow = 0; currentRow < OCEAN_ROW_SIZE; currentRow += THREAD_COUNT) {
 
       // Start all 10 threads
       for (long i = 0; i < THREAD_COUNT; i++) {
@@ -67,8 +66,8 @@ int main(int argc, char *argv[]) {
     // overwrite ocean values with futureOcean values
 
     //updateOceanFromFuture();
-    for (int k = 1; k < OCEAN_ROW_SIZE - 1; k++) {
-      for (int l = 1; l < OCEAN_COLUMN_SIZE - 1; l++) {
+    for (int k = 0; k < OCEAN_ROW_SIZE; k++) {
+      for (int l = 0; l < OCEAN_COLUMN_SIZE; l++) {
         ocean[k][l] = futureOcean[k][l];
       }
     }
