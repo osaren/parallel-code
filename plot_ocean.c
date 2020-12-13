@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 extern int ocean[OCEAN_ROW_SIZE][OCEAN_COLUMN_SIZE];
-//extern int futureOcean[OCEAN_ROW_SIZE][OCEAN_COLUMN_SIZE];
+extern int futureOcean[OCEAN_ROW_SIZE][OCEAN_COLUMN_SIZE];
 
 void plotOcean()
 {
@@ -34,13 +34,13 @@ void plotOcean()
    		}
     }
 	
-	/*/ repeating the same for future ocean
+	// repeating the same for future ocean
     for (i=0; i < OCEAN_ROW_SIZE; i++)
     {
     	for (j = 0; j < OCEAN_COLUMN_SIZE; j++) {
     		fprintf(temp, "%d\n", futureOcean[i][j]);
    		}
-    }*/
+    }
 
     for (i=0; i < NUM_COMMANDS; i++)
     {
