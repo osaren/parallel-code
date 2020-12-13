@@ -1,7 +1,7 @@
 // Global variables
-#define OCEAN_ROW_SIZE 1000
-#define OCEAN_COLUMN_SIZE 1000
-#define TARGET_GENERATIONS 20000
+#define OCEAN_ROW_SIZE 400
+#define OCEAN_COLUMN_SIZE 400
+#define TARGET_GENERATIONS 200
 #define EMPTY_CELL 0
 
 
@@ -14,8 +14,8 @@ int futureOcean[OCEAN_ROW_SIZE][OCEAN_COLUMN_SIZE]; // Declares an array, withou
 
 // Function declarations
 void initialPopulation();
+void Print_matrix(char *title);
 void processSharkRules(int *current, int *neighbours, int amountOfNeighbours);
 void processFishRules(int *current, int *neighbours, int amountOfNeighbours);
 void processBreedingRules(int *current, int *neighbours, int amountOfNeighbours);
 int* getNeighbours(long currentRow, int currentColumn, int *neighbours, int* amountOfNeighbours);
-
