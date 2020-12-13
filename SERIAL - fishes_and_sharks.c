@@ -199,3 +199,4 @@ int main(int argc, char *argv[]) {
   printf("Current time: %s\n", time_str);
   
   return 0;
+}
