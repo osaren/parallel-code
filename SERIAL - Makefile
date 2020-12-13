@@ -13,4 +13,8 @@ process_fish_rules.o: process_fish_rules.c functions.h
 process_breeding_rules.o: process_breeding_rules.c functions.h
 	gcc -c process_breeding_rules.c
 
+clean:
+	rm fishes_and_sharks
+	rm *.o
+
 
