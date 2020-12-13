@@ -14,7 +14,6 @@ int futureOcean[OCEAN_ROW_SIZE][OCEAN_COLUMN_SIZE]; // Declares an array, withou
 
 // Function declarations
 void initialPopulation();
-void Print_matrix(char *title);
 void processSharkRules(int *current, int *neighbours, int amountOfNeighbours);
 void processFishRules(int *current, int *neighbours, int amountOfNeighbours);
 void processBreedingRules(int *current, int *neighbours, int amountOfNeighbours);
