@@ -186,7 +186,7 @@ int main(int argc, char *argv[]) {
     // overwrite ocean values with futureOcean values
 
     //updateOceanFromFuture();
-    for (int k = 1; k < OCEAN_ROW_SIZE - 1; k++) {
+    for (int k = 0; k < OCEAN_ROW_SIZE; k++) {
       for (int l = 1; l < OCEAN_COLUMN_SIZE - 1; l++) {
         ocean[k][l] = futureOcean[k][l];
       }
